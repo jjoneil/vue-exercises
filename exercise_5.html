@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		html, body {
+			height: 100%;
+			width: 100%;
+		}
+
+		#colors {
+			height: 100%;
+			width: 100%;
+		}
+
+		#color1, #color2 {
+			margin-left: 25%;
+			margin-right: 25%;
+		}
+
+		.color-box {
+			width: 72px;
+			height: 72px;
+		}
+	</style>
+</head>
+<body>
+	<!--
+
+		Exercise 5: "Color Mixer"
+		Write an application which takes in two colors (hint: think deeply about which format you'd like to use)
+		Display a block of each color (hint: background-color on a div)
+		Display a block that is the "average" of the two colors (red = red1 + red2 / 2, etc.)
+
+	-->
+	<div id="colors" v-bind:style="{'background-color': colorPick()}">
+		<!-- <input v-model="color1"></input>
+		<input v-model="color2"></input> -->
+		<div id="color1">
+			<input v-model.number="red1">
+			<input v-model.number="green1">
+			<input v-model.number="blue1">
+		</div>
+		<div id="color2">
+			<input v-model.number="red2">
+			<input v-model.number="green2">
+			<input v-model.number="blue2">
+		</div>
+		<span class="color-box" v-bind:style="{'background-color': color1}"></span>
+		<span class="color-box" v-bind:style="{'background-color': color2}"></span>
+		<span class="color-box" v-bind:style="{'background-color': color3}"></span>
+	</div>
+
+	<script src="https://unpkg.com/vue"></script>
+	<script>
+		new Vue({
+			el: '#colors',
+			data: {
+				red1: 0,
+				green1: 0,
+				blue1: 0,
+				red1: 0,
+				green1: 0,
+				blue1: 0,
+			},
+			methods: {
+				colorPick: function(){
+					color1 = `rgb(${this.red1}, ${this.green1}, ${this.blue1})`
+					color2 = `rgb(${this.red2}, ${this.green2}, ${this.blue2})`
+					color3 = `rgb((${this.red1 } - ${this.red2}), 
+								(${this.green1 } - ${this.green2}), 
+								(${this.blue1 } - ${this.blue2}))`
+					return color1, color2, color3
+					//return `rgb(${this.red}, ${this.green}, ${this.blue})`
+				}
+			}
+		});
+	</script>
+</body>
+</html>

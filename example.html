@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<!--
+
+		Example: Post messages to the screen
+	-->
+
+	<div id="app">
+		<input v-model="message">
+		<button v-on:click="postMessage">Post Message</button>
+		<div v-for="msg of messages">
+			{{msg}}
+		</div>
+	</div>
+
+	<script src="https://unpkg.com/vue"></script>
+	<script>
+		new Vue({
+			el: '#app',
+			data: {
+				message: "",
+				messages: []
+			},
+			methods: {
+				postMessage: function() {
+					this.messages.push(this.message);
+					this.message = "";
+				}
+			}
+		});
+	</script>
+</body>
+</html>

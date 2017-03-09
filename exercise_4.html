@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        Exercise 4: "Loan Calculator"
+        Write an application which takes in a loan amount, interest rate, length of loan (in months), and amount paid.
+        When loan amount, interest rate, or length of loan are changed, the amount paid input should reflect the new amount the user will have to pay.
+        If the user changes the amount paid, update the loan amount field so that it reflects how much money they can borrow to pay that amount. (don't change the interest rate or length of loan).
+        Assume the user has to pay the loan monthly, and that the interest is applied monthly.
+    -->
+    <div id="num">
+        <p>Loan Amount
+            <input v-model="loan" placeholder="number">
+        </p>
+        <p>Intrest Rate
+            <input v-model="intrest" placeholder="number">
+        </p>
+        <p>Months
+            <input v-model="length" placeholder="number">
+        </p>
+        <p>Total Payments
+            <input v-bind:value="totalPayment()">
+        </p>
+        <p>Monthly Payments
+            <input v-bind:value="monthlyPayment()" v-on:keyup="handleChange">
+        </p>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        new Vue({
+            el: '#num',
+            data: {
+                loan: "",
+                intrest: "",
+                length: "",
+            },
+            methods: {
+                monthlyPayment: function(){
+                    return parseFloat(this.loan) * (parseFloat(this.intrest) * .01 + 1) / parseFloat(this.length)
+                },
+                totalPayment: function(){
+                    return parseFloat(this.loan) * (parseFloat(this.intrest) * .01 + 1)
+                },
+                handleChange: function(evt){
+                    this.loan = parseFloat(evt.target.value) * parseFloat(this.length) / (parseFloat(this.intrest) * .01 + 1)
+                }
+            }
+        });
+    </script>
+</body>
+</html
